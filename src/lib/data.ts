@@ -340,3 +340,29 @@ export function getCouncilorById(councilorId: string): Councilor | undefined {
   return councilors.find((councilor) => councilor.id === councilorId);
 }
 
+// 活動区（議員の選挙区）一覧
+export function getDistricts(): string[] {
+  return Array.from(new Set(councilors.map((councilor) => councilor.profile.district)));
+}
+
+export function searchCouncilors(query: string, district?: string | null): Councilor[] {
+  let filtered = councilors;
+
+  if (district) {
+    filtered = filtered.filter((councilor) => councilor.profile.district === district);
+  }
+
+  if (query) {
+    const lowerQuery = query.toLowerCase();
+    filtered = filtered.filter(
+      (councilor) =>
+        councilor.name.toLowerCase().includes(lowerQuery) ||
+        councilor.nameKana.toLowerCase().includes(lowerQuery) ||
+        councilor.factionName.toLowerCase().includes(lowerQuery) ||
+        councilor.profile.district.toLowerCase().includes(lowerQuery)
+    );
+  }
+
+  return filtered;
+}
+

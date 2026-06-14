@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './style.css'
-import { TopicSearch } from './components/TopicSearch'
+import { SearchHome } from './components/SearchHome'
 import { IssueList } from './components/IssueList'
 import { SolutionList } from './components/SolutionList'
 import { FactionList } from './components/FactionList'
@@ -25,7 +25,7 @@ function App() {
 
       <main className="container mx-auto px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <Routes>
-          <Route path="/" element={<TopicSearch />} />
+          <Route path="/" element={<SearchHome />} />
           <Route path="/topic/:topicId" element={<IssueList />} />
           <Route path="/issue/:issueId" element={<SolutionList />} />
           <Route path="/solution/:solutionId" element={<FactionList />} />
